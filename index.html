@@ -55,7 +55,7 @@
             box-shadow: 0 10px 20px rgba(0,0,0,0.15);
         }
 
-        /* ส่วนรูปภาพหรือวิดีโอ (ค่าเริ่มต้น) */
+        /* ส่วนรูปภาพหรือวิดีโอ (พื้นฐาน) */
         .media-area {
             width: 100%;
             height: 180px;
@@ -68,11 +68,11 @@
         .media-area img, .media-area video {
             width: 100%;
             height: 100%;
-            object-fit: cover; /* ให้ภาพเต็มกรอบพอดี */
+            object-fit: cover; 
         }
 
-        /* --- สไตล์เพิ่มเติมสำหรับกราฟิก PDF Merge (ใหม่) --- */
-        .pdf-merge-visual {
+        /* --- สไตล์สำหรับกราฟิก PDF (ใช้ร่วมกันทั้ง Merge และ Split) --- */
+        .pdf-visual-container {
             display: flex;
             align-items: center;
             justify-content: center;
@@ -80,19 +80,41 @@
             height: 100%;
             background-color: #dfe6e9;
         }
-        /* ปรับขนาดไอคอน PDF เฉพาะในส่วนนี้ */
-        .pdf-merge-visual img {
-            width: 60px !important;
-            height: auto !important;
-            object-fit: contain !important;
+        
+        /* ไอคอน PDF มาตรฐาน */
+        .pdf-icon {
+            width: 60px;
+            height: auto;
+            object-fit: contain;
             filter: drop-shadow(0 4px 4px rgba(0,0,0,0.1));
         }
-        /* เครื่องหมายบวก */
+
+        /* --- สไตล์เฉพาะ: Merge (Tool 2) --- */
         .plus-sign {
             font-size: 40px;
             font-weight: bold;
             color: #7f8c8d;
             margin: 0 15px;
+        }
+
+        /* --- สไตล์เฉพาะ: Split (Tool 3) - ใหม่! --- */
+        .split-arrows-group {
+            display: flex;
+            flex-direction: column; /* เรียงลูกศรแนวตั้ง */
+            justify-content: center;
+            margin: 0 15px;
+            color: #7f8c8d;
+            font-size: 24px;
+            line-height: 18px; /* บีบระยะห่างลูกศร */
+        }
+        .split-result-group {
+            display: flex;
+            flex-direction: column; /* เรียง PDF ผลลัพธ์แนวตั้ง */
+            gap: 5px;
+        }
+        .pdf-icon-small {
+            width: 35px; /* PDF ไฟล์เล็กทางขวา */
+            filter: drop-shadow(0 2px 2px rgba(0,0,0,0.1));
         }
 
         /* เนื้อหาการ์ด */
@@ -162,12 +184,10 @@
 
         <div class="tool-card">
             <div class="media-area">
-                <div class="pdf-merge-visual">
-                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon">
-                    
+                <div class="pdf-visual-container">
+                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF" class="pdf-icon">
                     <span class="plus-sign">+</span>
-                    
-                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF Icon">
+                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="PDF" class="pdf-icon">
                 </div>
             </div>
             <div class="content-area">
@@ -179,12 +199,22 @@
 
         <div class="tool-card">
             <div class="media-area">
-                <img src="https://images.unsplash.com/photo-1586281380349-632531db7ed4?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Split PDF">
+                <div class="pdf-visual-container">
+                    <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Source PDF" class="pdf-icon">
+                    
+                    <div class="split-arrows-group">
+                        <span>&#8599;</span> <span>&#8600;</span> </div>
+
+                    <div class="split-result-group">
+                        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Split PDF 1" class="pdf-icon-small">
+                        <img src="https://cdn-icons-png.flaticon.com/512/337/337946.png" alt="Split PDF 2" class="pdf-icon-small">
+                    </div>
+                </div>
             </div>
             <div class="content-area">
                 <h3>3. แยกไฟล์ PDF (Split)</h3>
                 <p>ตัดแบ่งหน้า PDF ออกเป็นไฟล์ย่อยๆ หรือเลือกเฉพาะหน้าที่ต้องการ</p>
-                <a href="#" target="_blank" class="btn-link btn-green">เปิดใช้งาน</a>
+                <a href="https://totosang.github.io/PDFSplit-0.1/" target="_blank" class="btn-link btn-green">เปิดใช้งาน</a>
             </div>
         </div>
 
